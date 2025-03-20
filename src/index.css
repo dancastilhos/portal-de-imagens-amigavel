@@ -1,0 +1,207 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 222 25% 45%;
+
+    --accent: 210 40% 92%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 213 27% 84%;
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full transition-colors hover:bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-sm;
+  }
+  
+  .form-control {
+    @apply p-2 rounded-md border border-input bg-background outline-none focus-visible:ring-2 focus-visible:ring-primary/30 transition-shadow duration-200;
+  }
+
+  .chip {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .btn-primary {
+    @apply px-4 py-2 bg-primary text-primary-foreground rounded-md font-medium transition-all duration-200 hover:bg-primary/90 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-secondary text-secondary-foreground rounded-md font-medium transition-all duration-200 hover:bg-secondary/90 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .os-card {
+    @apply relative p-4 rounded-lg border border-input transition-all duration-300 cursor-pointer hover:border-primary/50 hover:bg-accent;
+  }
+
+  .os-card.selected {
+    @apply border-primary bg-accent ring-2 ring-primary/20;
+  }
+}
+
+/* Text fade-in animation */
+.animate-text-appear {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: text-appear 0.5s forwards ease-out;
+}
+
+@keyframes text-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered fade-in animations for children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.stagger-children > *:nth-child(1) { animation: stagger-fade 0.3s 0.1s forwards ease-out; }
+.stagger-children > *:nth-child(2) { animation: stagger-fade 0.3s 0.15s forwards ease-out; }
+.stagger-children > *:nth-child(3) { animation: stagger-fade 0.3s 0.2s forwards ease-out; }
+.stagger-children > *:nth-child(4) { animation: stagger-fade 0.3s 0.25s forwards ease-out; }
+.stagger-children > *:nth-child(5) { animation: stagger-fade 0.3s 0.3s forwards ease-out; }
+.stagger-children > *:nth-child(6) { animation: stagger-fade 0.3s 0.35s forwards ease-out; }
+.stagger-children > *:nth-child(7) { animation: stagger-fade 0.3s 0.4s forwards ease-out; }
+.stagger-children > *:nth-child(8) { animation: stagger-fade 0.3s 0.45s forwards ease-out; }
+.stagger-children > *:nth-child(9) { animation: stagger-fade 0.3s 0.5s forwards ease-out; }
+.stagger-children > *:nth-child(10) { animation: stagger-fade 0.3s 0.55s forwards ease-out; }
+
+@keyframes stagger-fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
